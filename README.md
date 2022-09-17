@@ -2,7 +2,7 @@
  
 ## Kaggle Notebook
 
-[Anomaly Detection in Credit Card Transactions](https://www.kaggle.com/code/sugataghosh/anomaly-detection-in-credit-card-transactions)
+[**Anomaly Detection in Credit Card Transactions**](https://www.kaggle.com/code/sugataghosh/anomaly-detection-in-credit-card-transactions)
 
 ## Overview
 
@@ -42,34 +42,3 @@ The dataset contains information on the transactions made using credit cards by 
 ## Project Objective
 
 The objective of the project is to detect anomalies in credit card transactions. To be prcise, given the data on `Time`, `Amount` and transformed features `V1` to `V28`, our goal is to fit a [**probability distribution**](https://en.wikipedia.org/wiki/Probability_distribution) based on authentic transactions, and then use it to correctly identify a new transaction as authentic or fraudulent. Note that the target variable plays no role in constructing the probability distribution.
-
-## Evaluation Metric
-
-Any prediction about a binary categorical target variable falls into one of the four categories:
-- **True Positive:** The classification model correctly predicts the output to be positive
-- **True Negative:** The classification model correctly predicts the output to be negative
-- **False Positive:** The classification model incorrectly predicts the output to be positive
-- **False Negative:** The classification model incorrectly predicts the output to be negative
-
-Let **TP**, **TN**, **FP** and **FN** respectively denote the number of **true positives**, **true negatives**, **false positives** and **false negatives** among the predictions made by a particular classification model. Below we give the definitions of some evaluation metrics based on these four quantities.
-
-\begin{align*}
-&\text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Number of total predictions}} = \frac{TP + TN}{TP + TN + FP + FN}\\\\
-&\text{Precision} = \frac{\text{Number of true positive predictions}}{\text{Number of total positive predictions}} = \frac{TP}{TP + FP}\\\\
-&\text{Recall} = \frac{\text{Number of true positive predictions}}{\text{Number of total positive cases}} = \frac{TP}{TP + FN}\\\\
-&\text{Fowlkes-Mallows index (FM)} = \text{Geometric mean of Precision and Recall} = \sqrt{\text{Precision} \times \text{Recall}}\\\\
-&F_1\text{-Score} = \text{Harmonic mean of Precision and Recall} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}\\\\
-&F_{\beta}\text{-score} = \frac{\left(1 + \beta^2\right) \times \text{Precision} \times \text{Recall}}{\left(\beta^2 \times \text{Precision}\right) + \text{Recall}} = \frac{\left(1 + \beta^2\right) \times TP}{\left(1 + \beta^2\right) \times TP + \beta^2 \times FN + FP},
-\end{align*}
-
-where $\beta$ is a positive factor, chosen such that Recall is $\beta$ times as important as Precision in the analysis. Popular choices of $\beta$ are $0.5$, $1$ and $2$.
-
-\begin{align*}
-&\text{Matthews Correlation Coefficient (MCC)} = \frac{\left(TP \times TN\right) - \left(FP \times FN\right)}{\sqrt{\left(TP + FP\right) \times \left(TP + FN\right) \times \left(TN + FP\right) \times \left(TN + FN\right)}}.
-\end{align*}
-
-Unlike the previous metrics, [**MCC**](https://en.wikipedia.org/wiki/Phi_coefficient) varies from $-1$ (worst case scenario) to $1$ (best case scenario: perfect prediction). Among the discussed metrics, some good choices to evaluate models, in particular for imbalanced datasets, are **MCC** and [**$F_1$-score**](https://en.wikipedia.org/wiki/F-score), while [**Precision and Recall**](https://en.wikipedia.org/wiki/Precision_and_recall) also give useful information. We shall not give much importance to the [**Accuracy**](https://en.wikipedia.org/wiki/Accuracy_and_precision#In_binary_classification) metric in this project as it produces misleading conclusions when the classes are not balanced. In the problem at hand, false negative (a fraudulent transaction being classified as authentic) is more dangerous than false positive (an authentic transaction being classified as fraudulent). In the former case, the fraudster can cause further financial damage. In the latter case, the bank can cross-verify the authenticity of the transaction from the card-user after taking necessary steps to secure the card. Considering this fact, we employ $F_2$-score to tune threshold parameter and to select features in the present work. In terms of **TP**, **TN**, **FP**, and **FN**, it is given by
-
-$$ F_2\text{-score} = \frac{5 \times TP}{5 \times TP + 4 \times FN + FP}. $$
-
-All of the mentioned metrics are reported for both the validation set and the test set.
