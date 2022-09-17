@@ -41,4 +41,4 @@ The dataset contains information on the transactions made using credit cards by 
 
 ## Project Objective
 
-The objective of the project is to detect anomalies in credit card transactions. To be prcise, given the data on `Time`, `Amount` and transformed features `V1` to `V28`, our goal is to fit a [**probability distribution**](https://en.wikipedia.org/wiki/Probability_distribution) based on authentic transactions, and then use it to correctly identify a new transaction as authentic or fraudulent. Note that the target variable plays no role in constructing the probability distribution.
+The objective of the project is to detect anomalies in credit card transactions. To be precise, given the data on `Time`, `Amount` and transformed features `V1` to `V28`, our goal is to fit a [**probability distribution**](https://en.wikipedia.org/wiki/Probability_distribution) based on authentic transactions, and then use it to correctly identify a new transaction as authentic or fraudulent. Note that the target variable plays no role in constructing the probability distribution.
